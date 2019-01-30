@@ -12,6 +12,7 @@ The example shows following items:
 The sample environment is a `6` node OpenShift environment with `3 master`, `2 infra`, `1 worker` nodes.
 
 Here's the required system information:
+
 | Node | Hostname | IP | OS | Resource |
 |--------------|----------------|--------------------|--------------------|-----------------|
 | Master 1 | ocp-test-m.example.com, ocp-test-m1.example.com | 192.168.0.201 | RHEL 7.x minimal | 4c,16g |
