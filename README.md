@@ -13,11 +13,11 @@ The sample environment is a `6` node OpenShift environment with `3 master`, `2 i
 
 Here's the required system information:
 | Node | Hostname | IP | OS | Resource |
-|--------------|----------------|--------------------|--------------------|--------------------|
-| Master 1 | ocp-test-m.example.com / ocp-test-m1.example.com | 192.168.0.201 | RHEL 7.x minimal | 4c,16g |
+|--------------|----------------|--------------------|--------------------|-----------------|
+| Master 1 | ocp-test-m.example.com, ocp-test-m1.example.com | 192.168.0.201 | RHEL 7.x minimal | 4c,16g |
 | Master 2 | ocp-test-m2.example.com | 192.168.0.202 | RHEL 7.x minimal | 4c,16g |
 | Master 3 | ocp-test-m3.example.com | 192.168.0.203 | RHEL 7.x minimal | 4c,16g |
-| Infra 1 | ocp-test-i1.example.com / *.apps.example.com | 192.168.0.204 | RHEL 7.x minimal | 2c,8g |
+| Infra 1 | ocp-test-i1.example.com, *.apps.example.com | 192.168.0.204 | RHEL 7.x minimal | 2c,8g |
 | Infra 2 | ocp-test-i2.example.com | 192.168.0.205 | RHEL 7.x minimal | 2c,8g |
 | Worker 1 | ocp-test-w1.example.com | 192.168.0.206 | RHEL 7.x minimal | 2c,4g |
 | Bastion | rhlab1.example.com | 192.168.0.41 | RHEL 7.x N/A | N/A |
