@@ -1,0 +1,14 @@
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+
+
+192.168.0.41 rhlab1.example.com nfs.example.com ns1.example.com yum.example.com
+
+192.168.0.201 ocp-test-m.example.com
+192.168.0.201 ocp-test-m1.example.com
+192.168.0.202 ocp-test-m2.example.com
+192.168.0.203 ocp-test-m3.example.com
+192.168.0.204 ocp-test-i1.example.com
+192.168.0.205 ocp-test-i2.example.com
+192.168.0.206 ocp-test-w1.example.com
+

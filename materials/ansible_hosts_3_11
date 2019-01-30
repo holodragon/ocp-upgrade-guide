@@ -1,0 +1,110 @@
+# Create an OSEv3 group that contains the masters, nodes, and etcd groups
+[OSEv3:children]
+masters
+nodes
+etcd
+nfs
+
+# Set variables common for all OSEv3 hosts
+[OSEv3:vars]
+
+#openshift_disable_check=disk_availability,docker_storage,package_version
+openshift_disable_check=disk_availability,docker_storage,memory_availability,docker_image_availability
+#openshift_enable_unsupported_configurations=True
+
+#openshift_crio_use_rpm=true
+#openshift_use_crio=true
+#
+
+openshift_release='3.11'
+openshift_cluster_monitoring_operator_install=false
+#oreg_url=registry.redhat.io/openshift3/ose-${component}:${version} 
+
+oreg_auth_user='XXXX|OOO'
+oreg_auth_password='FWNRGKJERLBJKTBKNzflkwngmler.......'
+
+#openshift_image_tag='v3.10'
+#openshift_pkg_version='-3.10'
+#openshift_image_tag='v3.11.43'
+#openshift_pkg_version='-3.11.43'
+
+openshift_reconcile_sccs_reject_change=false
+
+openshift_master_cluster_hostname=ocp-test-m.example.com
+openshift_master_cluster_public_hostname=ocp-test-m.example.com
+
+
+#openshift_metrics_install_metrics=true
+#openshift_enable_unsupported_configurations=True
+#openshift_metrics_storage_kind=nfs
+#openshift_metrics_storage_access_modes=['ReadWriteOnce']
+#openshift_metrics_storage_nfs_directory=/exports
+#openshift_metrics_storage_nfs_options='*(rw,root_squash)'
+#openshift_metrics_storage_volume_name=metrics
+#openshift_metrics_storage_volume_size=10Gi
+
+# Install Prometheus Operator
+#openshift_cluster_monitoring_operator_install=true
+#openshift_cluster_monitoring_operator_prometheus_storage_capacity="50Gi"
+#openshift_cluster_monitoring_operator_alertmanager_storage_capacity="2Gi"
+
+openshift_master_default_subdomain=apps.example.com
+
+# PersistentLocalStorage
+## If Persistent Local Storage is wanted, this boolean can be defined to True.
+## This will create all necessary configuration to use persistent storage on nodes.
+#openshift_persistentlocalstorage_enabled=True
+#openshift_persistentlocalstorage_path=/mnt/local-storage
+#openshift_persistentlocalstorage_provisionner_image=quay.io/external_storage/local-volume-provisioner:v1.0.1
+
+
+#openshift_logging_install_logging=true
+#openshift_logging_es_ops_nodeselector={"node-role.kubernetes.io/infra":"true"}
+#openshift_logging_es_nodeselector={"node-role.kubernetes.io/infra":"true"}
+#openshift_logging_storage_kind=nfs
+#openshift_logging_storage_access_modes=['ReadWriteOnce']
+#openshift_logging_storage_nfs_directory=/exports
+#openshift_logging_storage_nfs_options='*(rw,root_squash)'
+#openshift_logging_storage_volume_name=logging
+#openshift_logging_storage_volume_size=30Gi
+
+os_sdn_network_plugin_name=redhat/openshift-ovs-networkpolicy
+
+#openshift_enable_service_catalog=false
+
+# SSH user, this user should allow ssh based auth without requiring a password
+ansible_ssh_user=root
+
+# If ansible_ssh_user is not root, ansible_become must be set to true
+#ansible_become=true
+
+openshift_deployment_type=openshift-enterprise
+
+# uncomment the following to enable htpasswd authentication; defaults to DenyAllPasswordIdentityProvider
+## openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider'}]
+#openshift_master_htpasswd_file=/etc/origin/master/htpasswd
+
+# host group for masters
+[masters]
+ocp-test-m1.example.com
+ocp-test-m2.example.com
+ocp-test-m3.example.com
+
+# host group for etcd
+[etcd]
+ocp-test-m1.example.com
+ocp-test-m2.example.com
+ocp-test-m3.example.com
+
+# host group for nodes, includes region info
+[nodes]
+ocp-test-m1.example.com openshift_node_group_name="node-config-master"
+ocp-test-m2.example.com openshift_node_group_name="node-config-master"
+ocp-test-m3.example.com openshift_node_group_name="node-config-master"
+ocp-test-i1.example.com openshift_node_group_name="node-config-infra"
+ocp-test-i2.example.com openshift_node_group_name="node-config-infra"
+ocp-test-w1.example.com openshift_node_group_name="node-config-compute"
+
+[nfs]
+rhlab1.example.com
+
