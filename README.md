@@ -56,12 +56,14 @@ A. Host Preparation for installation
 4. Execute following command on `Bastion`.
 	```
 	ansible nodes -m "copy" -a "src=./materials/hosts dest=/etc/hosts"
+	ansible nodes -m "copy" -a "src=./materials/origin-dns.conf dest=/etc/dnsmasq.d/origin-dns.conf"
 	ansible nodes -m "copy" -a "src=./materials/node-custom.conf dest=/etc/dnsmasq.d/node-custom.conf"
 
 	ansible nodes -m "lineinfile" -a "dest=/etc/sysconfig/network-scripts/ifcfg-eth0 line='NM_CONTROLLED=yes'"
 	ansible nodes -m "lineinfile" -a "dest=/etc/dnsmasq.conf line='server=8.8.8.8'"
 	ansible nodes -a "systemctl enable dnsmasq"
 	ansible nodes -a "systemctl start dnsmasq"
+	ansible nodes -a "systemctl restart dnsmasq"
 	ansible nodes -a "systemctl restart NetworkManager"
 	ansible nodes -a "nslookup google.com"
 
@@ -106,7 +108,7 @@ C. Host Preparation for 3.11 upgrade
 	```
 	oc login -u admin
 	oc adm migrate storage --include=* --loglevel=2 --confirm --config /etc/origin/master/admin.kubeconfig
-	
+
 	ansible nodes -a "subscription-manager refresh"
 
 	## Do Backup - the steps only cover ETCD v3
